@@ -12,6 +12,13 @@ export class DeleteItemComponent {
 
   deleteSelected = (): void => {
 
+    // Sans une boucle while, je me suis rendu compte que lorsque je supprimais
+    // deux taches qui sont côtes à côtes, seul la tâche ayant l'indice le plus bas
+    // était supprimée. D'où la mise en place d'une boucle while qui lorsque qu'elle detecte
+    // qu'une tâche est à true, elle la supprime, sort de la boucle for et recommence tant que
+    // cdtA n'est pas égale à la longueur du tableau, indiquant ainsi que l'on a bien parcourue
+    // tout le tableau.
+
     let cdt: number = 0;
     while(cdt != 1) {
       let cdtA: number = 0;
