@@ -1,0 +1,9 @@
+<ul>
+    <!-- <li *ngFor="let item of listItem; let indexOfElement=index">{{indexOfElement}} - {{item.title}} - {{item.status}} - Mettre le status de l'item à vrai<input type="checkbox" [(ngModel)]="item.status" name="{{item.title}}" id="{{item.title}}"></li> -->
+    <li *ngFor="let item of listItem; let indexOfElement=index">{{indexOfElement}} - {{item.title | truncate | uppercase}} - {{item.status}} - Mettre le status de l'item à vrai<input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}"></li>
+</ul>
+
+<app-add-item (newItemChange)="addNewItem($event)"></app-add-item>
+
+<app-select-item [allItems]="listItem" (updateItems)="methodeA($event)"></app-select-item>
+<app-delete-item [allItems]="listItem" (updateItems)="methodeA($event)"></app-delete-item>

@@ -1,0 +1,11 @@
+header {
+    width: 90%;
+    margin: .5em auto;
+    height: 10vh;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color: plum;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

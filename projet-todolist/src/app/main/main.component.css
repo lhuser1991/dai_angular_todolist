@@ -1,0 +1,18 @@
+section {
+    width: 90%;
+    margin: .5em auto;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color: beige;
+}
+
+.presentation {
+    text-align: center;
+}
+
+.todolist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
