@@ -1,7 +1,39 @@
+<!-- 
+    Pour l'essaie 3 et 4, j'ai voulue implémenter une fonctionnalité permettant d'afficher la 
+    totalité de la tâche. Pour ça, j'ai crée un variable mouseOver de type nombre qui va me permettre de 
+    detecter sur quelle tâche la souris pointe. (mouseover)="mouseOver=indexOfElement permets
+    à mouseOver de prendre la valeur de indexOfElement qui est l'index où se situe la tache. 
+    (mouseleave)="mouseOver=-1" doit permettre à mouseOver de ne pas prendre de chiffre qui soit
+    égale aux index de la liste, d'où le -1 en valeur. Pour l'essaie 3, j'ai directement mis un if sous 
+    forme d'opérateur ternaire dans les {{}}. Pour l'essaie 4, j'ai utilisé les directives *ngIf. 
+-->
+
 <ul>
-    <!-- <li *ngFor="let item of listItem; let indexOfElement=index">{{indexOfElement}} - {{item.title}} - {{item.status}} - Mettre le status de l'item à vrai<input type="checkbox" [(ngModel)]="item.status" name="{{item.title}}" id="{{item.title}}"></li> -->
-    <!-- <li *ngFor="let item of listItem; let indexOfElement=index">{{indexOfElement}} - {{item.title | truncate | uppercase}} - {{item.status}} - Mettre le status de l'item à vrai<input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}"></li> -->
-    <li *ngFor="let item of listItem; let indexOfElement=index">{{item.title | truncate | uppercase}} - {{msg}}<input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}"></li>
+    <!-- Essaie 1 -->
+    <!-- <li *ngFor="let item of listItem; let indexOfElement=index">
+        {{indexOfElement}} - {{item.title}} - {{item.status}} - Mettre le status de l'item à vrai
+        <input type="checkbox" [(ngModel)]="item.status" name="{{item.title}}" id="{{item.title}}">
+    </li> --> 
+    <!-- Essaie 2 -->
+    <!-- <li *ngFor="let item of listItem; let indexOfElement=index">{{indexOfElement}} - {{item.title | truncate | uppercase}} - {{item.status}} - Mettre le status de l'item à vrai
+        <input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}">
+    </li> -->
+    <!-- Essaie 3 -->
+    <!-- <li *ngFor="let item of listItem; let indexOfElement=index" (mouseover)="mouseOver=indexOfElement" (mouseleave)="mouseOver=-1"> 
+        {{indexOfElement == mouseOver ? (item.title | uppercase) : (item.title | truncate | uppercase)}}- {{msg}}
+        <input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}">
+    </li> -->
+    <!-- Essaie 4 -->
+    <li *ngFor="let item of listItem; let indexOfElement=index" (mouseover)="mouseOver=indexOfElement" (mouseleave)="mouseOver=-1"> 
+        <div *ngIf="mouseOver == indexOfElement">
+            {{item.title | uppercase}} - {{msg}}
+            <input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}">
+        </div>
+        <div *ngIf="mouseOver != indexOfElement">
+            {{item.title | uppercase | truncate}} - {{msg}}
+            <input type="checkbox" [checked]="item.status" (change)="updateItem(indexOfElement,!(item.status))" name="{{item.title}}" id="{{item.title}}">
+        </div>
+    </li>
 </ul>
 
 <app-add-item (newItemChange)="addNewItem($event)"></app-add-item>
